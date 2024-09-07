@@ -1,27 +1,19 @@
 #include <stdio.h>
 
-#include "header/playing_card.h"
-#include "header/blackjack_hand.h"
+#include "header/card.h"
+#include "header/hand.h"
+#include "header/shoe.h"
 
 int main(){
 
-    Card cards[4] = {
-        {Ace, Hearts},
-        {Seven, Clubs},
-        {Nine, Clubs},
-        {Ace, Clubs},
-    };
+    Shoe shoe;
+    init_shoe(&shoe, 1);
 
-    Hand hand;
-    init_hand(&hand, 2);
-
-    for(int i=0; i<4; i++){
-        add_card_to_hand(&hand, cards[i]);
+    for(int i=0; i<N_CARDS_IN_DECK; i++){
+        print_card(shoe.cards[i]);
     }
 
-    printf("%d\n", get_hand_total(&hand));
-
-    clear_hand(&hand);
+    free_shoe(&shoe);
 
     return 0;
 }

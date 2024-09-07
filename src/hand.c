@@ -1,27 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../header/playing_card.h"
+#include "../header/card.h"
+
+#define INITIAL_HAND_SIZE 15
 
 typedef struct {
 
     Card* cards;
     int n_current_cards;
     int max_n_cards;
+    int seat; //seat where the hand is being played at
 
 } Hand;
 
-//Initializes hand by allocating memory for the cards and setting counters to 0
-void init_hand(Hand* hand, int initialSize){
+//Initializes hand by allocating memory for the cards and setting counters to 0. hand->cards needs to be freed
+void init_hand(Hand* hand, int player_seat){
 
-    hand->cards = (Card*)malloc(initialSize * sizeof(Card));
+    hand->cards = (Card*)malloc(INITIAL_HAND_SIZE * sizeof(Card));
     if(hand->cards == NULL){
         perror("Error initializing hand");
         exit(EXIT_FAILURE);
     }
 
     hand->n_current_cards = 0;
-    hand->max_n_cards = initialSize;
+    hand->max_n_cards = INITIAL_HAND_SIZE;
+    hand->seat = player_seat;
 }
 
 //Adds a card to a hand. If the hand max size is reached it is extended
@@ -56,7 +60,7 @@ int get_hand_total(Hand* hand){
     int n_aces = 0;
 
     for(int i=0; i<hand->n_current_cards; i++){
-        hand_total += hand->cards[i].rank;
+        hand_total += get_card_value(hand->cards[i]);
 
         if(hand->cards[i].rank == Ace){
             n_aces++;

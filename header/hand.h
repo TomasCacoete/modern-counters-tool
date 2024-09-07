@@ -1,17 +1,18 @@
-#ifndef BLACKJACK_HAND_H
-#define BLACKJACK_HAND_H
+#ifndef HAND_H
+#define HAND_H
 
-#include "playing_card.h"
+#include "card.h"
 
 typedef struct {
 
     Card* cards;
     int n_current_cards;
     int max_n_cards;
+    int seat;
 
 } Hand;
 
-void init_hand(Hand* hand, int initialSize);
+void init_hand(Hand* hand, int player_seat);
 void add_card_to_hand(Hand* hand, Card new_card);
 void clear_hand(Hand* hand);
 

@@ -1,5 +1,9 @@
-#ifndef PLAYING_CARD_H
-#define PLAYING_CARD_H
+#ifndef CARD_H
+#define CARD_H
+
+#define N_CARDS_IN_DECK 52
+#define N_SUITS 4
+#define N_RANKS 13
 
 typedef enum {
 
@@ -9,7 +13,6 @@ typedef enum {
     Clubs = 3,
 
 } Suit;
-
 
 typedef enum {
 
@@ -22,13 +25,12 @@ typedef enum {
     Eight = 8,
     Nine = 9,
     Ten = 10,
-    Jack = 10,
-    Queen = 10,
-    King = 10,
-    Ace = 11,
+    Jack = 11,
+    Queen = 12,
+    King = 13,
+    Ace = 14,
 
 } Rank;
-
 
 typedef struct {
 
@@ -36,5 +38,9 @@ typedef struct {
     Suit suit;
     
 } Card;
+
+
+int get_card_value(Card card);
+void print_card(Card card);
 
 #endif
