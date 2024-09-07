@@ -1,5 +1,6 @@
 #include "../header/card.h"
 #include "../header/hand.h"
+#include "../header/shoe.h"
 
 typedef struct {
     
@@ -15,6 +16,8 @@ void init_player(Player* player, double buy_in, int player_seat){
     init_hand(&player->hand, player_seat);
 }
 
-void hit(Card* shoe, Hand hand){
+void hit(Shoe* shoe, Hand* hand){
     
+    Card dealt_card = deal_from_shoe(shoe);
+    add_card_to_hand(hand, dealt_card);
 }

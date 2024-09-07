@@ -54,15 +54,15 @@ void clear_hand(Hand* hand){
 }
 
 //Gets the hand total of a hand
-int get_hand_total(Hand* hand){
+int get_hand_total(Hand hand){
 
     int hand_total = 0;
     int n_aces = 0;
 
-    for(int i=0; i<hand->n_current_cards; i++){
-        hand_total += get_card_value(hand->cards[i]);
+    for(int i=0; i<hand.n_current_cards; i++){
+        hand_total += get_card_value(hand.cards[i]);
 
-        if(hand->cards[i].rank == Ace){
+        if(hand.cards[i].rank == Ace){
             n_aces++;
         }
     }

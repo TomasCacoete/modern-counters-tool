@@ -72,5 +72,9 @@ void print_card(Card card){
     const char *suit_names[] = {"Spades", "Hearts", "Diamonds", "Clubs"};
     const char *rank_names[] = {"", "", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
 
-    printf("%s of %s\n", rank_names[card.rank], suit_names[card.suit]);
+    if(card.rank == 0 && card.suit == 0){
+        printf("Null Card\n");
+    } else {
+        printf("%s of %s\n", rank_names[card.rank], suit_names[card.suit]);
+    }
 }
