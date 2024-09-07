@@ -36,7 +36,7 @@ void add_card_to_hand(Hand* hand, Card new_card){
 
         hand->cards = (Card*)realloc(hand->cards, hand->max_n_cards * sizeof(Card));
         if(hand->cards == NULL){
-            perror("Error reallocating more space for hand");
+            perror("Error reallocating more space for cards");
             exit(EXIT_FAILURE);
         }
     }
@@ -51,6 +51,13 @@ void clear_hand(Hand* hand){
     free(hand->cards);
     hand->n_current_cards = 0;
     hand->max_n_cards = 0;
+}
+
+//Prints a hand
+void print_hand(Hand hand){
+    for(int i=0; i<hand.n_current_cards; i++){
+        print_card(hand.cards[i]);
+    }
 }
 
 //Gets the hand total of a hand

@@ -12,6 +12,7 @@ typedef struct {
 
 } Shoe;
 
+//Fills the shoe with cards ordered by suit and then by rank
 void populate_shoe(Shoe* shoe){
     int index = 0;
 
@@ -26,6 +27,7 @@ void populate_shoe(Shoe* shoe){
     }
 }
 
+//Initializes the shoe
 void init_shoe(Shoe* shoe, int n_decks){
 
     shoe->cards = (Card*)malloc(n_decks*N_CARDS_IN_DECK * sizeof(Card));
@@ -40,6 +42,7 @@ void init_shoe(Shoe* shoe, int n_decks){
     populate_shoe(shoe);
 }
 
+//Frees the shoe's memory
 void free_shoe(Shoe* shoe){
 
     free(shoe->cards);
@@ -64,6 +67,7 @@ void shuffle_whole_shoe(Shoe* shoe){
     }
 }
 
+//Removes the last card from the shoe and returns it
 Card deal_from_shoe(Shoe* shoe){
     Card last_card = shoe->cards[shoe->n_current_cards-1];
 

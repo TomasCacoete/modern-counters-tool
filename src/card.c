@@ -39,6 +39,7 @@ typedef struct {
     
 } Card;
 
+//Gets the card value for blackjack
 int get_card_value(Card card){
 
     switch(card.rank){
@@ -67,6 +68,7 @@ int get_card_value(Card card){
     }
 }
 
+//Prints the card in readable format
 void print_card(Card card){
 
     const char *suit_names[] = {"Spades", "Hearts", "Diamonds", "Clubs"};

@@ -15,6 +15,7 @@ typedef struct {
 void init_hand(Hand* hand, int player_seat);
 void add_card_to_hand(Hand* hand, Card new_card);
 void clear_hand(Hand* hand);
+void print_hand(Hand hand);
 
 int get_hand_total(Hand hand);
 
