@@ -19,7 +19,7 @@ void init_player(Player* player, double buy_in, int player_seat){
     
     player->money = buy_in;
 
-    player->hands = (Hand*)malloc(2 * sizeof(Hand)); //2 initial hands to handle doubling
+    player->hands = (Hand*)malloc(2 * sizeof(Hand)); //2 initial hands to handle splitting
     if(player->hands == NULL){
         perror("Error initializing player");
         exit(EXIT_FAILURE);

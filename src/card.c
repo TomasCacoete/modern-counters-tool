@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define N_CARDS_IN_DECK 52
 #define N_SUITS 4
@@ -68,13 +69,17 @@ int get_card_value(Card card){
     }
 }
 
+bool is_null_card(Card card){
+    return card.rank == 0 && card.suit == 0;
+}
+
 //Prints the card in readable format
 void print_card(Card card){
 
     const char *suit_names[] = {"Spades", "Hearts", "Diamonds", "Clubs"};
     const char *rank_names[] = {"", "", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
 
-    if(card.rank == 0 && card.suit == 0){
+    if(is_null_card(card)){
         printf("Null Card\n");
     } else {
         printf("%s of %s\n", rank_names[card.rank], suit_names[card.suit]);
