@@ -4,29 +4,21 @@
 
 #include "header/card.h"
 #include "header/shoe.h"
+#include "header/hand.h"
 
 int main(/*int argc, char *argv[]*/){
 
-    vector* arr = init_vector(sizeof(int), 2);
+    Hand hand;
+    init_hand(&hand);
 
-    int aux1 = 3;
-    int aux2 = 4;
-    int aux3 = 5;
-    int aux4 = 6;
+    Card aux = {Ace, 10};
+    insert_element(hand.cards, &aux);
 
-    insert_element(arr, &aux1);
-    insert_element(arr, &aux2);
-    insert_element(arr, &aux3);
-    insert_element(arr, &aux4);
-
-    remove_element(arr, 9);
-
-
-    for(size_t i=0; i<arr->size; i++){
-        printf("%d\n", *(int*)get(arr, i));
+    for(size_t i=0; i<hand.cards->size; i++){
+        print_card(*(Card*)get(hand.cards, i));
     }
 
-    free_vector(arr);
+    free_vector(hand.cards);
 
     return 0;
 }

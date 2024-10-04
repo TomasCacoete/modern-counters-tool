@@ -1,3 +1,6 @@
+#ifndef VECTOR_H
+#define VECTOR_H
+
 #include <stdio.h>
 
 typedef struct {
@@ -14,3 +17,5 @@ void insert_element(vector* v, void* element);
 void* get(vector* v, size_t index);
 void remove_element(vector* v, size_t index);
 void free_vector(vector* v);
+
+#endif
