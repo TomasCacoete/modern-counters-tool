@@ -4,12 +4,14 @@
 #include "../header/vector.h"
 
 #include "../header/card.h"
+#include "../header/player.h"
 
 #define INITIAL_HAND_SIZE 15
 
 typedef struct {
 
     vector* cards;
+    Player* player;
 
 } Hand;
 

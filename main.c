@@ -5,6 +5,7 @@
 #include "header/card.h"
 #include "header/shoe.h"
 #include "header/hand.h"
+#include "header/player.h"
 
 int main(/*int argc, char *argv[]*/){
 
@@ -14,9 +15,6 @@ int main(/*int argc, char *argv[]*/){
     Card aux = {Ace, 10};
     insert_element(hand.cards, &aux);
 
-    for(size_t i=0; i<hand.cards->size; i++){
-        print_card(*(Card*)get(hand.cards, i));
-    }
 
     free_vector(hand.cards);
 
