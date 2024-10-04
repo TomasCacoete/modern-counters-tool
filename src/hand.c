@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "../header/vector.h"
 
 #include "../header/card.h"
@@ -12,8 +15,20 @@ typedef struct {
 
 } Hand;
 
-void init_hand(Hand* hand){
-    hand->cards = init_vector(sizeof(Card), INITIAL_HAND_SIZE);
+void init_hand(Hand** hand_ptr){ //TODO: assign the hand to a player
+
+    *hand_ptr = (Hand*)malloc(sizeof(Hand));
+    if(*hand_ptr == NULL){
+        fprintf(stderr, "ERROR: Failed to allocate memory for hand\n");
+        exit(EXIT_FAILURE);
+    }
+
+    (*hand_ptr)->cards = init_vector(sizeof(Card), INITIAL_HAND_SIZE);
+}
+
+void free_hand(Hand* hand){
+    free_vector(hand->cards);
+    free(hand);
 }
 
 void print_hand(Hand hand){

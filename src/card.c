@@ -64,7 +64,7 @@ int get_card_value(Card card){
             return 11;
 
         default:
-            perror("Card has invalid rank");
+            fprintf(stderr, "Card has invalid rank\n");
             exit(EXIT_FAILURE);
     }
 }

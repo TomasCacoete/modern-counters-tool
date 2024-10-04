@@ -15,14 +15,14 @@ vector* init_vector(size_t element_size, size_t initial_capacity){
 
     vector* v = (vector*)malloc(sizeof(vector));
     if(v == NULL){
-        fprintf(stderr, "ERROR: Allocating vector\n");
+        fprintf(stderr, "ERROR: Failed to allocate memory for vector\n");
         exit(EXIT_FAILURE);
     }
 
     v->element_size = element_size;
     v->elements = malloc(element_size * initial_capacity);
     if(v->elements == NULL){
-        fprintf(stderr, "ERROR: Allocating vector's elements\n");
+        fprintf(stderr, "ERROR: Failed to allocate memory for vector's elements\n");
         exit(EXIT_FAILURE);
     }
     v->size = 0;
@@ -36,7 +36,7 @@ void insert_element(vector* v, void* element){
         v->capacity *= 2;
         v->elements = realloc(v->elements, v->capacity*v->element_size);
         if(v->elements == NULL){
-            fprintf(stderr, "ERROR: Expanding vector's capacity\n");
+            fprintf(stderr, "ERROR: Failed to reallocate memory for vector\n");
             exit(EXIT_FAILURE);
         }
     }

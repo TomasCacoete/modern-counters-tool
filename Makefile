@@ -4,7 +4,7 @@ ifeq ($(DEBUG), 1)
     FLAGS += -g
 endif
 
-SRCS = src/vector.c src/card.c src/shoe.c src/hand.c src/player.c
+SRCS = src/vector.c src/card.c src/shoe.c src/hand.c src/player.c src/settings.c src/table.c
 
 main:
 	gcc $(FLAGS) $(SRCS) main.c -o main

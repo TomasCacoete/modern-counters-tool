@@ -6,17 +6,22 @@
 #include "header/shoe.h"
 #include "header/hand.h"
 #include "header/player.h"
+#include "header/settings.h"
+#include "header/table.h"
 
 int main(/*int argc, char *argv[]*/){
 
-    Hand hand;
-    init_hand(&hand);
+    Table table;
+    init_table(&table);
 
-    Card aux = {Ace, 10};
-    insert_element(hand.cards, &aux);
+    Card dealt_card = deal_from_shoe(&table.shoe);
+    insert_element(table.hands[0]->cards, &dealt_card);
+    dealt_card = deal_from_shoe(&table.shoe);
+    insert_element(table.hands[0]->cards, &dealt_card);
 
+    print_hand(*table.hands[0]);
 
-    free_vector(hand.cards);
+    free_table(&table);
 
     return 0;
 }

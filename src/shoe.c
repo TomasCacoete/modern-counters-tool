@@ -32,7 +32,7 @@ void init_shoe(Shoe* shoe, int n_decks){
 
     shoe->cards = (Card*)malloc(n_decks*N_CARDS_IN_DECK * sizeof(Card));
     if(shoe->cards == NULL){
-        perror("Error initializing shoe");
+        fprintf(stderr, "ERROR: Failed to allocate memory for shoe\n");
         exit(EXIT_FAILURE);
     }
 

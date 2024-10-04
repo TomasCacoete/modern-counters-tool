@@ -15,7 +15,8 @@ typedef struct {
 
 } Hand;
 
-void init_hand(Hand* hand);
+void init_hand(Hand** hand_ptr);
+void free_hand(Hand* hand);
 
 void print_hand(Hand hand);
 int get_hand_total(Hand hand);
