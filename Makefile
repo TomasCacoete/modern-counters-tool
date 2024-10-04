@@ -4,7 +4,7 @@ ifeq ($(DEBUG), 1)
     FLAGS += -g
 endif
 
-SRCS = src/card.c src/shoe.c
+SRCS = src/vector.c src/card.c src/shoe.c
 
 main:
 	gcc $(FLAGS) $(SRCS) main.c -o main
@@ -12,7 +12,7 @@ main:
 clean: 
 	rm main
 
-run:
+valgrind:
 	valgrind --track-origins=yes --leak-check=full -s ./main
 
 .PHONY: main
