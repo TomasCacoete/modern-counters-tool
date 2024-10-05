@@ -4,6 +4,7 @@
 #include "../header/card.h"
 #include "../header/shoe.h"
 #include "../header/hand.h"
+#include "../header/player.h"
 #include "../header/settings.h"
 
 #define DEALER_SEAT 0
@@ -27,6 +28,8 @@ void init_table(Table* table){
     }
 
     init_hand(&table->hands[DEALER_SEAT], NULL); //initializes the dealer hand
+    table->hands[DEALER_SEAT]->player->strategy = dealer_ai;
+
     for(int i=1; i<table->settings.max_n_players+1; i++){
         table->hands[i] = NULL;
     }
@@ -54,7 +57,7 @@ void print_table(Table table){
     printf("---------------------------\n");
     for(int i=1; i<table.settings.max_n_players+1; i++){
         if(table.hands[i] != NULL){
-            printf("PLAYER %d:\n", i);
+            printf("PLAYER %d: Hand Total: %d\n", i, get_hand_total(*table.hands[i]));
             print_hand(*table.hands[i]);
             printf("---------------------------\n");
         }
