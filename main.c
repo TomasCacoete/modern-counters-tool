@@ -8,18 +8,25 @@
 #include "header/player.h"
 #include "header/settings.h"
 #include "header/table.h"
+#include "header/blackjack.h"
 
 int main(/*int argc, char *argv[]*/){
 
     Table table;
     init_table(&table);
 
-    Card dealt_card = deal_from_shoe(&table.shoe);
-    insert_element(table.hands[0]->cards, &dealt_card);
-    dealt_card = deal_from_shoe(&table.shoe);
-    insert_element(table.hands[0]->cards, &dealt_card);
+    Player p1;
+    join_table(&table, &p1, 1);
 
-    print_hand(*table.hands[0]);
+    Player p2;
+    join_table(&table, &p2, 4);
+
+    join_table(&table, &p1, 2);
+
+    deal_initial_round(&table);
+
+    print_table(table);
+
 
     free_table(&table);
 

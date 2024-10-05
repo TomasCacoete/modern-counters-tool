@@ -15,7 +15,7 @@ typedef struct {
 
 } Hand;
 
-void init_hand(Hand** hand_ptr){ //TODO: assign the hand to a player
+void init_hand(Hand** hand_ptr, Player* player){
 
     *hand_ptr = (Hand*)malloc(sizeof(Hand));
     if(*hand_ptr == NULL){
@@ -24,6 +24,7 @@ void init_hand(Hand** hand_ptr){ //TODO: assign the hand to a player
     }
 
     (*hand_ptr)->cards = init_vector(sizeof(Card), INITIAL_HAND_SIZE);
+    (*hand_ptr)->player = player;
 }
 
 void free_hand(Hand* hand){

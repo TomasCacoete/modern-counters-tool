@@ -6,6 +6,8 @@
 #include "../header/hand.h"
 #include "../header/settings.h"
 
+#define DEALER_SEAT 0
+
 typedef struct {
     
     Shoe shoe;
@@ -14,10 +16,6 @@ typedef struct {
 
 } Table;
 
-void init_dealer_hand(Table* table){
-    init_hand(&table->hands[0]);
-    table->hands[0]->player = NULL;
-}
 
 void init_table(Table* table){
     init_settings(&table->settings);
@@ -28,7 +26,7 @@ void init_table(Table* table){
         exit(EXIT_FAILURE);
     }
 
-    init_dealer_hand(table);
+    init_hand(&table->hands[DEALER_SEAT], NULL); //initializes the dealer hand
     for(int i=1; i<table->settings.max_n_players+1; i++){
         table->hands[i] = NULL;
     }
@@ -47,4 +45,34 @@ void free_table(Table* table){
     }
 
     free(table->hands);
+}
+
+void print_table(Table table){
+    printf("---------------------------\n");
+    printf("DEALER:\n");
+    print_hand(*table.hands[0]);
+    printf("---------------------------\n");
+    for(int i=1; i<table.settings.max_n_players+1; i++){
+        if(table.hands[i] != NULL){
+            printf("PLAYER %d:\n", i);
+            print_hand(*table.hands[i]);
+            printf("---------------------------\n");
+        }
+    }
+}
+
+void join_table(Table* table, Player* player, int player_seat){
+
+    if(player_seat < 0 || player_seat > table->settings.max_n_players){
+        fprintf(stderr, "ERROR: Invalid seat number\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if(table->hands[player_seat] != NULL){
+        fprintf(stderr, "ERROR: Seat %d is already occupied\n", player_seat);
+        exit(EXIT_FAILURE);
+    }
+
+    init_hand(&table->hands[player_seat], player);
+    
 }

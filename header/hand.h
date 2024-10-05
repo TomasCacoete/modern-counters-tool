@@ -15,7 +15,7 @@ typedef struct {
 
 } Hand;
 
-void init_hand(Hand** hand_ptr);
+void init_hand(Hand** hand_ptr, Player* player);
 void free_hand(Hand* hand);
 
 void print_hand(Hand hand);
