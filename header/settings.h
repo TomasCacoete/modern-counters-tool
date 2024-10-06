@@ -5,6 +5,7 @@ typedef struct {
 
     int max_n_players;
     int n_decks;
+    double penetration_point;
 
 } Settings;
 

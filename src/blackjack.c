@@ -14,3 +14,9 @@ void deal_initial_round(Table* table){
         }
     }
 }
+
+void play_round(Table* table){
+    deal_initial_round(table);
+
+    
+}

@@ -45,7 +45,7 @@ void init_table(Table* table){
         table->hands[i] = NULL;
     }
 
-    init_shoe(&table->shoe, table->settings.n_decks);
+    init_shoe(&table->shoe, table->settings.n_decks, table->settings.penetration_point);
 }
 
 void end_session(Table* table, Player* player){
