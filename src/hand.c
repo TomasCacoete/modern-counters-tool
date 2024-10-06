@@ -4,16 +4,9 @@
 #include "../header/vector.h"
 
 #include "../header/card.h"
-#include "../header/player.h"
+#include "../header/hand_player.h"
 
 #define INITIAL_HAND_SIZE 15
-
-typedef struct {
-
-    vector* cards;
-    Player* player;
-
-} Hand;
 
 void init_hand(Hand** hand_ptr, Player* player){
 
@@ -44,7 +37,7 @@ int get_hand_total(Hand hand){
     int n_aces = 0;
 
     for(size_t i=0; i<hand.cards->size; i++){
-        Card card = *(Card*)get(hand.cards->elements, i);
+        Card card = *(Card*)get(hand.cards, i);
         hand_total += get_card_value(card);
 
         if(card.rank == Ace){

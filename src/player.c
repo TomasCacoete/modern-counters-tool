@@ -1,9 +1,9 @@
-#include "../header/card.h"
-#include "../header/hand.h"
-#include "../header/player.h"
+#include "../header/hand_player.h"
 
-Action dealer_ai(struct Hand* hand, Card dealer_card){
-    if(get_hand_total(*hand) > 17){
+Action dealer_ai(Hand hand, Card dealer_card){
+    (void)dealer_card;
+
+    if(get_hand_total(hand) > 17){
         return ACTION_STAND;
 
     } else {

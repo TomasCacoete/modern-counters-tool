@@ -13,6 +13,6 @@ clean:
 	rm main
 
 valgrind:
-	valgrind --track-origins=yes --leak-check=full -s ./main
+	valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all -s ./main
 
 .PHONY: main

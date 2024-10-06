@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "../header/card.h"
 #include "../header/shoe.h"
-#include "../header/hand.h"
-#include "../header/player.h"
+#include "../header/hand_player.h"
 #include "../header/settings.h"
 
 #define DEALER_SEAT 0
@@ -18,6 +18,19 @@ typedef struct {
 } Table;
 
 
+void init_dealer(Table* table){
+    Player* dealer = (Player*)malloc(sizeof(Player));
+    if(dealer == NULL){
+        fprintf(stderr, "ERROR: Failed to allocate memory for dealer\n");
+        exit(EXIT_FAILURE);
+    }
+
+    dealer->money = INFINITY;
+    dealer->strategy = dealer_ai;
+
+    init_hand(&table->hands[DEALER_SEAT], dealer);
+}
+
 void init_table(Table* table){
     init_settings(&table->settings);
 
@@ -27,9 +40,7 @@ void init_table(Table* table){
         exit(EXIT_FAILURE);
     }
 
-    init_hand(&table->hands[DEALER_SEAT], NULL); //initializes the dealer hand
-    table->hands[DEALER_SEAT]->player->strategy = dealer_ai;
-
+    init_dealer(table);
     for(int i=1; i<table->settings.max_n_players+1; i++){
         table->hands[i] = NULL;
     }
@@ -37,12 +48,32 @@ void init_table(Table* table){
     init_shoe(&table->shoe, table->settings.n_decks);
 }
 
+void end_session(Table* table, Player* player){
+    Player* player_leaving = player;
+
+    free(player_leaving);
+
+    for(int i=1; i<table->settings.max_n_players+1; i++){
+        if(table->hands[i] != NULL && table->hands[i]->player == player_leaving){
+            table->hands[i]->player = NULL;
+        }
+    }
+}
+
 void free_table(Table* table){
     free_shoe(&table->shoe);
 
+    free(table->hands[0]->player);
     free_hand(table->hands[0]);
+
     for(int i=1; i<table->settings.max_n_players+1; i++){
-        if(table->hands[i] != NULL){
+
+        if(table->hands[i] != NULL){ 
+
+            if(table->hands[i]->player != NULL){
+                end_session(table, table->hands[i]->player);
+            }
+
             free_hand(table->hands[i]);
         }
     }
@@ -77,5 +108,4 @@ void join_table(Table* table, Player* player, int player_seat){
     }
 
     init_hand(&table->hands[player_seat], player);
-    
 }

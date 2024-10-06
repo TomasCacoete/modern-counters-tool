@@ -48,7 +48,7 @@ void insert_element(vector* v, void* element){
 
 void* get(vector* v, size_t index){
     if(index >= v->size){
-        fprintf(stderr, "ERROR: Index %lu exceeds vector's capacity %lu\n", index, v->capacity);
+        fprintf(stderr, "ERROR: Index %lu exceeds vector's size %lu\n", index, v->size);
         exit(EXIT_FAILURE);
     }
 
