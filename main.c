@@ -9,16 +9,19 @@
 #include "header/settings.h"
 #include "header/table.h"
 #include "header/blackjack.h"
+#include "header/mct.h"
+
 
 int main(/*int argc, char *argv[]*/){
+    init_mct();
 
     Table table;
     init_table(&table);
     printf("%d\n", table.shoe.cut_card_pos);
 
-    Player* p1 = (Player*)malloc(sizeof(Player));
-    p1->strategy = dealer_ai;
-    join_table(&table, p1, 1);
+    Player p1;
+    init_player(&p1, 501, dealer_ai);
+    join_table(&table, &p1, 1);
 
     shuffle_whole_shoe(&table.shoe);
     deal_initial_round(&table);
@@ -27,11 +30,7 @@ int main(/*int argc, char *argv[]*/){
 
     free_table(&table);
 
+    free_mct();
+
     return 0;
 }
-
-//TODO: If the same player joins two tables, when one of the tables is freed it will free the player
-//      and it will consequently error out when trying to access it through the other table
-//      
-//      Solution: Dont free the players on the free table. Only the hands.
-//                Instead create a different structure to store the players and free that at the end of the programm

@@ -4,10 +4,10 @@ ifeq ($(DEBUG), 1)
     FLAGS += -g
 endif
 
-SRCS = src/vector.c src/card.c src/shoe.c src/hand.c src/player.c src/settings.c src/table.c src/blackjack.c
+SRCS = src/vector.c src/card.c src/shoe.c src/hand.c src/player.c src/settings.c src/table.c src/blackjack.c src/mct.c
 
 main:
-	gcc $(FLAGS) $(SRCS) main.c -o main
+	clang $(FLAGS) $(SRCS) main.c -o main
 
 clean: 
 	rm main

@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "../header/hand_player.h"
 
 Action dealer_ai(Hand hand, Card dealer_card){
