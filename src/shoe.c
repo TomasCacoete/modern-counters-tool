@@ -100,8 +100,8 @@ void shuffle_whole_shoe(Shoe* shoe){
 }
 
 //Takes the last card from the shoe and returns it
-Card deal_from_shoe(Shoe* shoe){
-    Card last_card = shoe->cards[shoe->n_current_cards-1];
+Card* deal_from_shoe(Shoe* shoe){
+    Card* last_card = &shoe->cards[shoe->n_current_cards-1];
     shoe->n_current_cards--;
     
     return last_card;

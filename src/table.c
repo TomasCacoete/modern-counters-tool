@@ -48,10 +48,9 @@ void init_table(Table* table){
     init_shoe(&table->shoe, table->settings.n_decks, table->settings.penetration_point);
 }
 
-void end_session(Table* table, Player* player){
-    Player* player_leaving = player;
+void end_session(Table* table, Player* player_leaving){
 
-    free(player_leaving);
+    //free(player_leaving);
 
     for(int i=1; i<table->settings.max_n_players+1; i++){
         if(table->hands[i] != NULL && table->hands[i]->player == player_leaving){

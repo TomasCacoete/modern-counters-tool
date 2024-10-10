@@ -29,3 +29,9 @@ int main(/*int argc, char *argv[]*/){
 
     return 0;
 }
+
+//TODO: If the same player joins two tables, when one of the tables is freed it will free the player
+//      and it will consequently error out when trying to access it through the other table
+//      
+//      Solution: Dont free the players on the free table. Only the hands.
+//                Instead create a different structure to store the players and free that at the end of the programm
