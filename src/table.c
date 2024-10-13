@@ -31,7 +31,7 @@ void init_dealer(Table* table){
     init_hand(&table->hands[DEALER_SEAT], dealer);
 }
 
-void init_table(Table* table){
+void init_table_data(Table* table){
     init_settings(&table->settings);
 
     table->hands = (Hand**)malloc((table->settings.max_n_players+1) * sizeof(Hand*));
