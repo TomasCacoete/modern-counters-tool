@@ -17,18 +17,15 @@ int main(/*int argc, char *argv[]*/){
 
     Table table;
     init_table(&table);
-    printf("%d\n", table.shoe.cut_card_pos);
 
     Player p1;
-    init_player(&p1, 501, dealer_ai);
+    init_player(&p1, 500, dealer_ai);
     join_table(&table, &p1, 1);
 
-    shuffle_whole_shoe(&table.shoe);
     deal_initial_round(&table);
 
-    print_table(table);
-
-    free_table(&table);
+    Table* aux = (Table*)get(mct_tables, 0);
+    print_table(*aux);
 
     free_mct();
 

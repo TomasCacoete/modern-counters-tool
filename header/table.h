@@ -1,6 +1,9 @@
 #ifndef TABLE_H
 #define TABLE_H
 
+#include "../header/settings.h"
+#include "../header/shoe.h"
+
 typedef struct {
     
     Shoe shoe;
@@ -9,7 +12,7 @@ typedef struct {
 
 } Table;
 
-void init_table(Table* table);
+void init_table_data(Table* table);
 void free_table(Table* table);
 void print_table(Table table);
 
