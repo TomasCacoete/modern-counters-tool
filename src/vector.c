@@ -70,6 +70,14 @@ void remove_element(vector* v, size_t index){
     v->size--;
 }
 
+void clear_vector(vector* v) {
+    if(v == NULL){
+        fprintf(stderr, "ERROR: Cannot clear a NULL vector\n");
+        exit(EXIT_FAILURE);
+    }
+    v->size = 0;
+}
+
 void free_vector(vector* v){
     free(v->elements);
     free(v);
