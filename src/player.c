@@ -1,15 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+typedef struct{
 
-#include "../header/hand_player.h"
+    double money;
 
-Action dealer_ai(Hand hand, Card dealer_card){
-    (void)dealer_card;
-
-    if(get_hand_total(hand) > 17){
-        return ACTION_STAND;
-
-    } else {
-        return ACTION_HIT;
-    }
-}
+} Player;

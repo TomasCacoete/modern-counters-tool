@@ -2,7 +2,8 @@
 #define BLACKJACK_H
 
 #include "../header/card.h"
-#include "../header/hand_player.h"
+#include "../header/player.h"
+#include "../header/hand.h"
 #include "../header/shoe.h"
 #include "../header/settings.h"
 #include "../header/table.h"

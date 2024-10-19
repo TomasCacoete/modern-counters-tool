@@ -4,7 +4,8 @@
 #include "../header/vector.h"
 
 #include "../header/card.h"
-#include "../header/hand_player.h"
+#include "../header/player.h"
+#include "../header/hand.h"
 #include "../header/table.h"
 
 #define INITIAL_PLAYER_CAPACITY 20
@@ -18,9 +19,8 @@ void init_mct(){
     mct_tables = init_vector(sizeof(Table), INITIAL_TABLE_CAPACITY);
 }
 
-void init_player(Player* player, double initial_money, Action (*initial_strategy)(Hand hand, Card dealer_card)){
+void init_player(Player* player, double initial_money){
     player->money = initial_money;
-    player->strategy = initial_strategy;
 
     insert_element(mct_players, player);
 }

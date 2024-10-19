@@ -4,9 +4,7 @@
 #include "../header/vector.h"
 
 #include "../header/card.h"
-
-typedef struct Hand Hand;
-typedef struct Player Player;
+#include "../header/player.h"
 
 typedef enum {
 
@@ -18,26 +16,22 @@ typedef enum {
 
 } Action;
 
-struct Hand{
+typedef struct Hand Hand;
+
+typedef struct Hand{
 
     vector* cards;
     Player* player;
+    Action (*strategy)(Hand* hand, Card dealer_card);
 
-};
+} Hand;
 
-struct Player{
-
-    double money;
-    Action (*strategy)(Hand hand, Card dealer_card);
-
-};
-
-void init_hand(Hand** hand_ptr, Player* player);
+void init_hand(Hand** hand_ptr, Player* player, Action (*strategy)(Hand* hand, Card dealer_card));
 void free_hand(Hand* hand);
 
 void print_hand(Hand hand);
 int get_hand_total(Hand hand);
 
-Action dealer_ai(Hand hand, Card dealer_card);
+Action dealer_ai(Hand* hand, Card dealer_card);
 
 #endif

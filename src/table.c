@@ -4,7 +4,8 @@
 
 #include "../header/card.h"
 #include "../header/shoe.h"
-#include "../header/hand_player.h"
+#include "../header/player.h"
+#include "../header/hand.h"
 #include "../header/settings.h"
 
 #define DEALER_SEAT 0
@@ -26,9 +27,8 @@ void init_dealer(Table* table){
     }
 
     dealer->money = INFINITY;
-    dealer->strategy = dealer_ai;
 
-    init_hand(&table->hands[DEALER_SEAT], dealer);
+    init_hand(&table->hands[DEALER_SEAT], dealer, dealer_ai);
 }
 
 void init_table_data(Table* table){
@@ -46,6 +46,7 @@ void init_table_data(Table* table){
     }
 
     init_shoe(&table->shoe, table->settings.n_decks, table->settings.penetration_point);
+    //shuffle_whole_shoe(&table->shoe);
 }
 
 void free_table(Table* table){
@@ -78,7 +79,7 @@ void print_table(Table table){
     }
 }
 
-void join_table(Table* table, Player* player, int player_seat){
+void join_table(Table* table, Player* player, int player_seat, Action (*strategy)(Hand* hand, Card dealer_card)){
 
     if(player_seat < 0 || player_seat > table->settings.max_n_players){
         fprintf(stderr, "ERROR: Invalid seat number\n");
@@ -90,5 +91,5 @@ void join_table(Table* table, Player* player, int player_seat){
         exit(EXIT_FAILURE);
     }
 
-    init_hand(&table->hands[player_seat], player);
+    init_hand(&table->hands[player_seat], player, strategy);
 }

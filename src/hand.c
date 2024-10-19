@@ -4,11 +4,12 @@
 #include "../header/vector.h"
 
 #include "../header/card.h"
-#include "../header/hand_player.h"
+#include "../header/player.h"
+#include "../header/hand.h"
 
 #define INITIAL_HAND_SIZE 15
 
-void init_hand(Hand** hand_ptr, Player* player){
+void init_hand(Hand** hand_ptr, Player* player, Action (*strategy)(Hand* hand, Card dealer_card)){
 
     *hand_ptr = (Hand*)malloc(sizeof(Hand));
     if(*hand_ptr == NULL){
@@ -18,6 +19,7 @@ void init_hand(Hand** hand_ptr, Player* player){
 
     (*hand_ptr)->cards = init_vector(sizeof(Card), INITIAL_HAND_SIZE);
     (*hand_ptr)->player = player;
+    (*hand_ptr)->strategy = strategy;
 }
 
 void free_hand(Hand* hand){
@@ -50,4 +52,15 @@ int get_hand_total(Hand hand){
     }
 
     return hand_total;
+}
+
+Action dealer_ai(Hand* hand, Card dealer_card){
+    (void)dealer_card;
+
+    if(get_hand_total(*hand) > 17){
+        return ACTION_STAND;
+
+    } else {
+        return ACTION_HIT;
+    }
 }
