@@ -25,10 +25,18 @@ int main(/*int argc, char *argv[]*/){
     init_player(&p1, 500, dealer_ai);
     join_table(aux, &p1, 1);
     
-    deal_initial_round(aux);
+    play_round(aux);
     
 
     free_mct();
 
     return 0;
 }
+
+/*
+
+TODO:
+Change the strategy function to be on the struct of the hand instead of the player.
+This makes it possible for a player to use different strategies on different hands
+
+*/

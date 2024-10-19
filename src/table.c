@@ -46,6 +46,7 @@ void init_table_data(Table* table){
     }
 
     init_shoe(&table->shoe, table->settings.n_decks, table->settings.penetration_point);
+    //shuffle_whole_shoe(&table->shoe);
 }
 
 void free_table(Table* table){
@@ -64,11 +65,22 @@ void free_table(Table* table){
     free(table->hands);
 }
 
-void print_table(Table table){
+void print_table(Table table, bool SHOW_FIRST_DEALER_CARD){
     printf("---------------------------\n");
-    printf("DEALER:\n");
-    print_hand(*table.hands[0]);
+    printf("DEALER: ");
+
+    if(SHOW_FIRST_DEALER_CARD){
+        printf("Hand Total: %d\n", get_hand_total(*table.hands[0]));
+        print_hand(*table.hands[0]);
+        
+    } else{
+        printf("Hand Total: %d\n", get_card_value(*(Card*)get(table.hands[0]->cards, 1)));
+        printf("Flipped Card\n");
+        print_card(*(Card*)get(table.hands[0]->cards, 1));
+    }
+
     printf("---------------------------\n");
+
     for(int i=1; i<table.settings.max_n_players+1; i++){
         if(table.hands[i] != NULL){
             printf("PLAYER %d: Hand Total: %d\n", i, get_hand_total(*table.hands[i]));

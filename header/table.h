@@ -14,7 +14,7 @@ typedef struct {
 
 void init_table_data(Table* table);
 void free_table(Table* table);
-void print_table(Table table);
+void print_table(Table table, bool SHOW_FIRST_DEALER_CARD);
 
 void join_table(Table* table, Player* player, int player_seat);
 void end_session(Table* table, Player* player);

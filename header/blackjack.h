@@ -8,5 +8,6 @@
 #include "../header/table.h"
 
 void deal_initial_round(Table* table);
+void play_round(Table* table);
 
 #endif
