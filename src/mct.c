@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "../header/vector.h"
 
@@ -15,6 +16,7 @@ vector* mct_players;
 vector* mct_tables;
 
 void init_mct(){
+    srand(time(NULL));
     mct_players = init_vector(sizeof(Player), INITIAL_PLAYER_CAPACITY);
     mct_tables = init_vector(sizeof(Table), INITIAL_TABLE_CAPACITY);
 }

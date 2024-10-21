@@ -1,6 +1,8 @@
 #ifndef CARD_H
 #define CARD_H
 
+#include <stdbool.h>
+
 #define N_CARDS_IN_DECK 52
 #define N_SUITS 4
 #define N_RANKS 13
@@ -41,6 +43,7 @@ typedef struct {
 
 
 int get_card_value(Card card);
+bool cards_equal(Card c1, Card c2);
 void print_card(Card card);
 
 #endif

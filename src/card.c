@@ -69,6 +69,10 @@ int get_card_value(Card card){
     }
 }
 
+bool cards_equal(Card c1, Card c2){
+    return c1.rank == c2.rank && c1.suit == c2.suit;
+}
+
 //Prints the card in readable format
 void print_card(Card card){
 
