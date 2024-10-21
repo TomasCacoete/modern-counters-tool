@@ -21,12 +21,14 @@ int main(/*int argc, char *argv[]*/){
 
     Player p1;
     init_player(&p1, 500);
-    join_table(&table, &p1, 1, dealer_ai);
-
-    deal_initial_round(&table);
 
     Table* aux = (Table*)get(mct_tables, 0);
-    print_table(*aux);
+    aux->shoe.cut_card_pos = 50;
+
+    Player* p_aux = (Player*)get(mct_players, 0);
+    join_table(aux, p_aux, 1, dealer_ai);
+
+    play_round(aux);
 
     free_mct();
 
